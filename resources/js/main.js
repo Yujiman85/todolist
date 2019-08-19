@@ -5,9 +5,19 @@ let completeSVG = '<svg version=1.1 xml:space=preserve xmlns=http://www.w3.org/2
 // User clicked add button
 // If there is something in the text box, add it to the list 
 document.getElementById('add').addEventListener('click', function() {
-	const value = document.getElementById('item').value;
+	let value = document.getElementById('item').value;
 	if (value) addItemTodo(value);
+	document.getElementById('item').value = "";
 });
+
+document.getElementById('item').addEventListener('keyup', function(event) {
+	event.preventDefault();
+	if (event.keyCode === 13) {
+		let value = document.getElementById('item').value;
+		if (value) addItemTodo(value);
+		document.getElementById('item').value = "";
+	}
+})
 
 //Creates and adds a new item to the todo list with buttons
 function addItemTodo(text) {
